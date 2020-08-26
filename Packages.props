@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup Label="Runtime dependencies">
+	</ItemGroup>
+	<ItemGroup Label="Build dependencies">
+		<PackageReference Update="Messerli.CodeStyle" Version="[1.2.0, 2)" />
+		<PackageReference Update="Equals.Fody" Version="[4.0.1, 5)" />
+		<PackageReference Update="Fody" Version="[6.2.0, 7)" />
+	</ItemGroup>
+	<ItemGroup Label="Test dependencies">
+		<PackageReference Update="Microsoft.NET.Test.Sdk" Version="[16.1.1, 17)" />
+		<PackageReference Update="xunit" Version="[2.4.1, 3)" />
+		<PackageReference Update="xunit.runner.visualstudio" Version="[2.4.1, 3)" />
+	</ItemGroup>
+</Project>
