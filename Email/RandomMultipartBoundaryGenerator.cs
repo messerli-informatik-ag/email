@@ -2,7 +2,7 @@ using MimeKit;
 
 namespace Messerli.Email
 {
-    public sealed class RandomMultipartBoundaryGenerator : IMultipartBoundaryGenerator
+    internal sealed class RandomMultipartBoundaryGenerator : IMultipartBoundaryGenerator
     {
         public string GenerateBoundary()
         {

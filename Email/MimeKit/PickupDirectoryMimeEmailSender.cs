@@ -8,7 +8,7 @@ using MimeKit;
 
 namespace Messerli.Email.MimeKit
 {
-    public sealed class PickupDirectoryMimeEmailSender : IMimeKitEmailSender
+    internal sealed class PickupDirectoryMimeEmailSender : IMimeKitEmailSender
     {
         private const string EmailFileExtension = "eml";
 

@@ -6,7 +6,7 @@ using MimeKit;
 
 namespace Messerli.Email.MimeKit
 {
-    public sealed class SmtpMailKitEmailSender : IMimeKitEmailSender
+    internal sealed class SmtpMailKitEmailSender : IMimeKitEmailSender
     {
         private readonly SmtpServerConfig _smtpServerConfig;
 

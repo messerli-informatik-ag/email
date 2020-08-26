@@ -3,7 +3,7 @@ using MimeKit;
 
 namespace Messerli.Email.MimeKit
 {
-    public interface IMimeKitEmailSender
+    internal interface IMimeKitEmailSender
     {
         public Task SendMail(MimeMessage message);
     }
