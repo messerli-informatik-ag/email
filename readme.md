@@ -10,12 +10,13 @@ A simple abstraction for sending emails.
 ```csharp
 var mailCatcherConfig = new SmtpServerConfig(host: "localhost", port: 1025, useSsl: false);
 var sender = new EmailSenderBuilder().Build(new EmailDelivery.SmtpDelivery(mailCatcherConfig));
-var message = var message = new EmailMessageBuilder()
+var message = new EmailMessageBuilder()
   .From(new MailboxAddress("pitcher@localhost", "Pitcher"))
   .AddRecipient(new MailboxAddress("mailcatcher@localhost", "MailCatcher"))
   .Subject("Catch me if you can")
   .AddBodyPart(new BodyPart.Alternatives(
       new BodyPart.Plain("Hello there"),
-      new BodyPart.Html("<b>Hello there</b>")));
+      new BodyPart.Html("<b>Hello there</b>")))
+  .Build();
 await sender.SendMessage(message);
 ```
