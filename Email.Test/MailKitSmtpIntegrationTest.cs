@@ -21,7 +21,7 @@ namespace Messerli.Email.Test
 
             var emailSender = CreateEmailSender();
             var message = new EmailMessageBuilder()
-                .From(new MailboxAddress("pitcher@localhost", "Backbone"))
+                .From(new MailboxAddress("pitcher@localhost", "Pitcher"))
                 .AddRecipient(new MailboxAddress("mailcatcher@localhost", "MailCatcher"))
                 .Subject("Catch me if you can")
                 .AddBodyPart(new BodyPart.Alternatives(

@@ -10,6 +10,14 @@
         <Nullable>enable</Nullable>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
+    <PropertyGroup>
+        <RepositoryUrl>https://github.com/messerli-informatik-ag/email</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>email mail abstraction</PackageTags>
+        <PackageLicenseExpression>MIT OR Apache-2.0</PackageLicenseExpression>
+        <Copyright>© Messerli Informatik AG. All rights reserved.</Copyright>
+        <Description>A simple abstraction for sending emails.</Description>
+    </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Fody" PrivateAssets="All" />
         <PackageReference Include="Equals.Fody" PrivateAssets="All" />
