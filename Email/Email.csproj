@@ -6,7 +6,7 @@
     </PropertyGroup>
     <PropertyGroup>
         <Version>0.1.0</Version>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFrameworks>netstandard2.0; netstandard2.1</TargetFrameworks>
         <LangVersion>8.0</LangVersion>
         <Nullable>enable</Nullable>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -27,5 +27,6 @@
         <PackageReference Include="System.Collections.Immutable" />
         <PackageReference Include="MailKit" />
         <PackageReference Include="Messerli.FileSystem" />
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Condition="$(TargetFramework) == 'netstandard2.0'"/>
     </ItemGroup>
 </Project>

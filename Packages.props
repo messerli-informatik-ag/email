@@ -5,6 +5,7 @@
 		<PackageReference Update="System.Collections.Immutable" Version="[1.7.1, 2)" />
 		<PackageReference Update="MailKit" Version="[2.5.2, 3)" />
 		<PackageReference Update="Messerli.FileSystem" Version="[0.1.6, 0.2)" />
+		<PackageReference Update="Microsoft.Bcl.AsyncInterfaces" Version="[1.1.1, 2)" />
 	</ItemGroup>
 	<ItemGroup Label="Build dependencies">
 		<PackageReference Update="Messerli.CodeStyle" Version="[1.2.0, 2)" />
