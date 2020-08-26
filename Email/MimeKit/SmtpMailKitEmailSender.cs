@@ -33,9 +33,8 @@ namespace Messerli.Email.MimeKit
         {
             await client.ConnectAsync(_smtpServerConfig.Host, _smtpServerConfig.Port, _smtpServerConfig.UseSsl);
 
-            if (_smtpServerConfig.Credentials.HasValue)
+            if (_smtpServerConfig.Credentials is { } credentials)
             {
-                var credentials = _smtpServerConfig.Credentials.Value;
                 await client.AuthenticateAsync(credentials.Username, credentials.Password);
             }
         }
