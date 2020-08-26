@@ -21,6 +21,7 @@
     <ItemGroup>
         <PackageReference Include="Fody" PrivateAssets="All" />
         <PackageReference Include="Equals.Fody" PrivateAssets="All" />
+        <PackageReference Include="ConfigureAwait.Fody" PrivateAssets="All" />
         <PackageReference Include="Funcky" />
         <PackageReference Include="System.Collections.Immutable" />
         <PackageReference Include="MailKit" />
