@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Funcky.Extensions;
@@ -35,7 +36,7 @@ namespace Messerli.Email.MimeKit
         [SuppressMessage("IDisposableAnalyzers.Correctness", "IDISP001: Dispose created", Justification = "Dispose action is returned")]
         public WithDisposeAction<MimeMessage> MapToMimeKitMessage(EmailMessage message)
         {
-            var body = MapToMimeKitBody(message.BodyParts);
+            var body = MapToMimeKitBody(message.BodyParts.ToImmutableList());
 
             var mimeMessage = new MimeMessage
             {
@@ -55,8 +56,8 @@ namespace Messerli.Email.MimeKit
             return new WithDisposeAction<MimeMessage>(mimeMessage, body.Dispose);
         }
 
-        private WithDisposeAction<MimeEntity> MapToMimeKitBody(IEnumerable<BodyPart> bodyParts)
-            => bodyParts.Count() switch
+        private WithDisposeAction<MimeEntity> MapToMimeKitBody(IImmutableList<BodyPart> bodyParts)
+            => bodyParts.Count switch
             {
                 0 => new WithDisposeAction<MimeEntity>(new TextPart()),
                 1 => MapToMimeKitPart(bodyParts.First()),
@@ -82,7 +83,7 @@ namespace Messerli.Email.MimeKit
         private WithDisposeAction<MimeEntity> MapToContainerMimeEntity<TContainer>(TContainer container, IEnumerable<BodyPart> bodyParts)
             where TContainer : MimeEntity, ICollection<MimeEntity>
         {
-            var mimeKitParts = bodyParts.Select(MapToMimeKitPart);
+            var mimeKitParts = bodyParts.Select(MapToMimeKitPart).ToImmutableList();
             mimeKitParts.Select(p => p.Value).ForEach(container.Add);
             return new WithDisposeAction<MimeEntity>(container, mimeKitParts.DisposeAll);
         }
