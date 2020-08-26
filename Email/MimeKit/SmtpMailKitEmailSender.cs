@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Funcky.Monads;
 using MailKit;
 using MailKit.Net.Smtp;
 using Messerli.Email.Configuration;
@@ -33,10 +34,8 @@ namespace Messerli.Email.MimeKit
         {
             await client.ConnectAsync(_smtpServerConfig.Host, _smtpServerConfig.Port, _smtpServerConfig.UseSsl);
 
-            if (_smtpServerConfig.Credentials is { } credentials)
-            {
-                await client.AuthenticateAsync(credentials.Username, credentials.Password);
-            }
+            await _smtpServerConfig.Credentials.AndThen(async credentials =>
+                await client.AuthenticateAsync(credentials.Username, credentials.Password));
         }
     }
 }
