@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Funcky.Extensions;
 using Funcky.Monads;
@@ -11,7 +12,7 @@ namespace Messerli.Email
         public static void DisposeAll<TItem>(this IEnumerable<TItem> enumerable)
             where TItem : IDisposable
         {
-            var exceptions = enumerable.WhereSelect(DisposeItem).ToList();
+            var exceptions = enumerable.WhereSelect(DisposeItem).ToImmutableList();
             if (exceptions.Any())
             {
                 throw new AggregateException(exceptions);
