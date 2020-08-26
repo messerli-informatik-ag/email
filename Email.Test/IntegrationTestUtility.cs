@@ -9,7 +9,7 @@ namespace Messerli.Email.Test
 
         public static Stream OpenResourceFile(string filename)
             => new FileOpeningBuilder()
-                .Read(true)
+                .Read()
                 .Open(Path.Combine(ResourcesDirectoryName, filename));
     }
 }

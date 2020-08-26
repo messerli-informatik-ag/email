@@ -37,8 +37,8 @@ namespace Messerli.Email.MimeKit
 
         private Stream OpenPickupFile(MimeMessage message)
             => _fileOpeningBuilder
-                .Create(true)
-                .Write(true)
+                .Create()
+                .Write()
                 .Open(GetPickupFilePath(message));
 
         private string GetPickupFilePath(MimeMessage message)
