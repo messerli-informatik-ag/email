@@ -1,5 +1,8 @@
 # Email
 
+![Build](https://github.com/messerli-informatik-ag/email/workflows/Build/badge.svg)
+[![NuGet](https://img.shields.io/nuget/v/Messerli.Email.svg)](https://www.nuget.org/packages/Messerli.Email/)
+
 A simple abstraction for sending emails.
 
 ## Example
