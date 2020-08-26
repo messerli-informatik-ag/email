@@ -49,19 +49,19 @@ namespace Messerli.Email
             => ShallowClone(multipartBoundaryGenerator: multipartBoundaryGenerator);
 
         [Pure]
-        public EmailSenderBuilder FileSystem(IFileSystem fileSystem)
-            => ShallowClone(fileSystem: fileSystem);
-
-        [Pure]
-        public EmailSenderBuilder FileOpeningBuilder(IFileOpeningBuilder fileOpeningBuilder)
-            => ShallowClone(fileOpeningBuilder: fileOpeningBuilder);
-
-        [Pure]
         public IEmailSender Build(EmailDelivery delivery)
             => delivery.Match(
                 @null: _ => new NullEmailSender(),
                 pickup: CreatePickupDeliverySender,
                 smtp: CreateSmtpDeliverySender);
+
+        [Pure]
+        internal EmailSenderBuilder FileSystem(IFileSystem fileSystem)
+            => ShallowClone(fileSystem: fileSystem);
+
+        [Pure]
+        internal EmailSenderBuilder FileOpeningBuilder(IFileOpeningBuilder fileOpeningBuilder)
+            => ShallowClone(fileOpeningBuilder: fileOpeningBuilder);
 
         private EmailSenderBuilder ShallowClone(
             IMessageIdGenerator? messageIdGenerator = null,
