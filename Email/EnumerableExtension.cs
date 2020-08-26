@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
+using Funcky.Extensions;
+using Funcky.Monads;
 
 namespace Messerli.Email
 {
@@ -9,23 +12,18 @@ namespace Messerli.Email
         public static void DisposeAll<TItem>(this IEnumerable<TItem> enumerable)
             where TItem : IDisposable
         {
-            var exceptions = enumerable.SelectMany(DisposeItem).ToList();
+            var exceptions = enumerable.WhereSelect(DisposeItem).ToImmutableList();
             if (exceptions.Any())
             {
                 throw new AggregateException(exceptions);
             }
         }
 
-        private static IEnumerable<Exception> DisposeItem<TItem>(TItem item)
+        private static Option<Exception> DisposeItem<TItem>(TItem item)
             where TItem : IDisposable
-        {
-            if (ExecuteActionAndReturnException(item.Dispose) is { } exception)
-            {
-                yield return exception;
-            }
-        }
+            => ExecuteActionAndReturnException(item.Dispose);
 
-        private static Exception? ExecuteActionAndReturnException(Action action)
+        private static Option<Exception> ExecuteActionAndReturnException(Action action)
         {
             try
             {
@@ -33,10 +31,10 @@ namespace Messerli.Email
             }
             catch (Exception exception)
             {
-                return exception;
+                return Option.Some(exception);
             }
 
-            return null;
+            return Option<Exception>.None();
         }
     }
 }
