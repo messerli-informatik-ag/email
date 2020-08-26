@@ -1,4 +1,3 @@
-using System;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using Messerli.Email.BodyPart;
@@ -39,6 +38,7 @@ namespace Messerli.Email.Test
         }
 
         private static IEmailSender CreateEmailSender()
-            => throw new NotImplementedException();
+            => new EmailSenderBuilder()
+                .Build(new EmailDelivery.SmtpDelivery(DefaultMailCatcherConfig));
     }
 }

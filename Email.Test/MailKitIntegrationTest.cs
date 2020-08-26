@@ -56,7 +56,7 @@ namespace Messerli.Email.Test
         {
             await using var stream = new MemoryStream();
 
-            var mailKitWrapper = CreateEmailSender();
+            var mailKitWrapper = CreateEmailSender(stream);
             await mailKitWrapper.SendMessage(message);
 
             RewindStream(stream);
@@ -122,8 +122,14 @@ namespace Messerli.Email.Test
         private static void RewindStream(Stream stream)
             => stream.Seek(0, SeekOrigin.Begin);
 
-        private static IEmailSender CreateEmailSender()
-            => throw new NotImplementedException();
+        private static IEmailSender CreateEmailSender(Stream stream)
+            => new EmailSenderBuilder()
+                .FileSystem(Mock.Of<IFileSystem>())
+                .FileOpeningBuilder(MockFileOpeningBuilder(stream))
+                .DateTimeAccessor(MockDateTimeAccessor())
+                .MessageIdGenerator(MockMessageIdGenerator())
+                .MultipartBoundaryGenerator(MockMultipartBoundaryGenerator())
+                .Build(new EmailDelivery.PickupDelivery(PickupDirectory));
 
         private static IFileOpeningBuilder MockFileOpeningBuilder(Stream stream)
             => Mocks
