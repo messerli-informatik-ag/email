@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using Funcky.Extensions;
 using Messerli.Email.BodyPart;
 
 namespace Messerli.Email
@@ -126,13 +127,10 @@ namespace Messerli.Email
 
         private void ValidateRecipients()
         {
-            if (IsEmpty(_recipients) && IsEmpty(_carbonCopyRecipients) && IsEmpty(_blindCarbonCopyRecipients))
+            if (_recipients.None() && _carbonCopyRecipients.None() && _carbonCopyRecipients.None())
             {
                 throw new InvalidOperationException("There must be at least one recipient");
             }
         }
-
-        private static bool IsEmpty<T>(IEnumerable<T> enumerable)
-            => !enumerable.Any();
     }
 }
