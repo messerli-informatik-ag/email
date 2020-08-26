@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Funcky.Extensions;
-using Messerli.Email.BodyPart;
 using Messerli.Email.Time;
 using MimeKit;
 using ContentType = System.Net.Mime.ContentType;
@@ -56,7 +55,7 @@ namespace Messerli.Email.MimeKit
             return new WithDisposeAction<MimeMessage>(mimeMessage, body.Dispose);
         }
 
-        private WithDisposeAction<MimeEntity> MapToMimeKitBody(IEnumerable<IBodyPartVariant> bodyParts)
+        private WithDisposeAction<MimeEntity> MapToMimeKitBody(IEnumerable<BodyPart> bodyParts)
             => bodyParts.Count() switch
             {
                 0 => new WithDisposeAction<MimeEntity>(new TextPart()),
@@ -64,7 +63,7 @@ namespace Messerli.Email.MimeKit
                 _ => MapToMultipart(bodyParts),
             };
 
-        private WithDisposeAction<MimeEntity> MapToMultipart(IEnumerable<IBodyPartVariant> bodyParts)
+        private WithDisposeAction<MimeEntity> MapToMultipart(IEnumerable<BodyPart> bodyParts)
             => MapToContainerMimeEntity(
                 new Multipart
                 {
@@ -72,7 +71,7 @@ namespace Messerli.Email.MimeKit
                 },
                 bodyParts);
 
-        private WithDisposeAction<MimeEntity> MapToMultipartAlternative(IEnumerable<IBodyPartVariant> bodyParts)
+        private WithDisposeAction<MimeEntity> MapToMultipartAlternative(IEnumerable<BodyPart> bodyParts)
             => MapToContainerMimeEntity(
                 new MultipartAlternative
                 {
@@ -80,7 +79,7 @@ namespace Messerli.Email.MimeKit
                 },
                 bodyParts);
 
-        private WithDisposeAction<MimeEntity> MapToContainerMimeEntity<TContainer>(TContainer container, IEnumerable<IBodyPartVariant> bodyParts)
+        private WithDisposeAction<MimeEntity> MapToContainerMimeEntity<TContainer>(TContainer container, IEnumerable<BodyPart> bodyParts)
             where TContainer : MimeEntity, ICollection<MimeEntity>
         {
             var mimeKitParts = bodyParts.Select(MapToMimeKitPart);
@@ -88,18 +87,15 @@ namespace Messerli.Email.MimeKit
             return new WithDisposeAction<MimeEntity>(container, mimeKitParts.DisposeAll);
         }
 
-        private WithDisposeAction<MimeEntity> MapToMimeKitPart(IBodyPartVariant bodyPart)
-            => bodyPart switch
-            {
-                Attachment attachment => CreateAttachment(attachment),
-                Html html => new WithDisposeAction<MimeEntity>(new TextPart(MimeKitTextFormat.Html) { Text = html.Content }),
-                Plain plain => new WithDisposeAction<MimeEntity>(new TextPart(MimeKitTextFormat.Plain) { Text = plain.Content }),
-                Alternatives alternatives => MapToMultipartAlternative(alternatives.Children),
-                _ => throw new InvalidOperationException(),
-            };
+        private WithDisposeAction<MimeEntity> MapToMimeKitPart(BodyPart bodyPart)
+            => bodyPart.Match(
+                attachment: CreateAttachment,
+                html: html => new WithDisposeAction<MimeEntity>(new TextPart(MimeKitTextFormat.Html) { Text = html.Content }),
+                plain: plain => new WithDisposeAction<MimeEntity>(new TextPart(MimeKitTextFormat.Plain) { Text = plain.Content }),
+                alternatives: alternatives => MapToMultipartAlternative(alternatives.Children));
 
         [SuppressMessage("IDisposableAnalyzers.Correctness", "IDISP001: Dispose created", Justification = "Dispose action is returned")]
-        private static WithDisposeAction<MimeEntity> CreateAttachment(Attachment attachment)
+        private static WithDisposeAction<MimeEntity> CreateAttachment(BodyPart.Attachment attachment)
         {
             var stream = attachment.StreamFactory();
             var entity = new MimePart(MapToMimeKitContentType(attachment.ContentType))

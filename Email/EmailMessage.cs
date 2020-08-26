@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Messerli.Email.BodyPart;
 
 namespace Messerli.Email
 {
@@ -11,7 +10,7 @@ namespace Messerli.Email
             IEnumerable<MailboxAddress> recipients,
             IEnumerable<MailboxAddress> carbonCopyRecipients,
             IEnumerable<MailboxAddress> blindCarbonCopyRecipients,
-            IEnumerable<IBodyPartVariant> bodyParts,
+            IEnumerable<BodyPart> bodyParts,
             AutoGenerationType autoGenerationType)
         {
             Subject = subject;
@@ -33,7 +32,7 @@ namespace Messerli.Email
 
         public IEnumerable<MailboxAddress> BlindCarbonCopyRecipients { get; }
 
-        public IEnumerable<IBodyPartVariant> BodyParts { get; }
+        public IEnumerable<BodyPart> BodyParts { get; }
 
         public AutoGenerationType AutoGenerationType { get; }
     }

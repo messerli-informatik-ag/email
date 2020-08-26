@@ -1,6 +1,5 @@
 using System.Net.Mime;
 using System.Threading.Tasks;
-using Messerli.Email.BodyPart;
 using Messerli.Email.Configuration;
 using Xunit;
 using static Messerli.Email.Test.IntegrationTestUtility;
@@ -25,10 +24,10 @@ namespace Messerli.Email.Test
                 .From(new MailboxAddress("pitcher@localhost", "Backbone"))
                 .AddRecipient(new MailboxAddress("mailcatcher@localhost", "MailCatcher"))
                 .Subject("Catch me if you can")
-                .AddBodyPart(new Alternatives(
-                    new Plain("Hello there"),
-                    new Html("<b>Hello there</b>")))
-                .AddBodyPart(new Attachment(
+                .AddBodyPart(new BodyPart.Alternatives(
+                    new BodyPart.Plain("Hello there"),
+                    new BodyPart.Html("<b>Hello there</b>")))
+                .AddBodyPart(new BodyPart.Attachment(
                     new ContentType(MediaTypeNames.Image.Jpeg),
                     attachmentFileName,
                     () => OpenResourceFile(attachmentFileName)))

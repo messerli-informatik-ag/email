@@ -4,7 +4,6 @@ using System.Collections.Immutable;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using Funcky.Extensions;
-using Messerli.Email.BodyPart;
 
 namespace Messerli.Email
 {
@@ -22,7 +21,7 @@ namespace Messerli.Email
 
         private readonly IImmutableList<MailboxAddress> _blindCarbonCopyRecipients = ImmutableList<MailboxAddress>.Empty;
 
-        private readonly IImmutableList<IBodyPartVariant> _bodyParts = ImmutableList<IBodyPartVariant>.Empty;
+        private readonly IImmutableList<BodyPart> _bodyParts = ImmutableList<BodyPart>.Empty;
 
         private readonly AutoGenerationType? _autoGenerationType;
 
@@ -36,7 +35,7 @@ namespace Messerli.Email
             IImmutableList<MailboxAddress> recipients,
             IImmutableList<MailboxAddress> carbonCopyRecipients,
             IImmutableList<MailboxAddress> blindCarbonCopyRecipients,
-            IImmutableList<IBodyPartVariant> bodyParts,
+            IImmutableList<BodyPart> bodyParts,
             AutoGenerationType? autoGenerationType)
         {
             _subject = subject;
@@ -96,11 +95,11 @@ namespace Messerli.Email
             => ShallowClone(blindCarbonCopyRecipients: _blindCarbonCopyRecipients.AddRange(recipient));
 
         [Pure]
-        public EmailMessageBuilder AddBodyPart(IBodyPartVariant bodyPart)
+        public EmailMessageBuilder AddBodyPart(BodyPart bodyPart)
             => ShallowClone(bodyParts: _bodyParts.Add(bodyPart));
 
         [Pure]
-        public EmailMessageBuilder AddBodyParts(IEnumerable<IBodyPartVariant> bodyPart)
+        public EmailMessageBuilder AddBodyParts(IEnumerable<BodyPart> bodyPart)
             => ShallowClone(bodyParts: _bodyParts.AddRange(bodyPart));
 
         [Pure]
@@ -114,7 +113,7 @@ namespace Messerli.Email
             IImmutableList<MailboxAddress>? recipients = null,
             IImmutableList<MailboxAddress>? carbonCopyRecipients = null,
             IImmutableList<MailboxAddress>? blindCarbonCopyRecipients = null,
-            IImmutableList<IBodyPartVariant>? bodyParts = null,
+            IImmutableList<BodyPart>? bodyParts = null,
             AutoGenerationType? autoGenerationType = null)
             => new EmailMessageBuilder(
                 subject ?? _subject,
