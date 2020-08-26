@@ -1,0 +1,12 @@
+From: From <from@localhost>
+Date: Thu, 20 Feb 2020 00:00:00 +0100
+Subject: Test
+Message-Id: <message-id@localhost>
+To: to@localhost
+Cc: cc@localhost
+Bcc: bcc@localhost
+Auto-Submitted: auto-replied
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello World

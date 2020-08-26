@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk; Microsoft.Build.CentralPackageVersions">
+    <PropertyGroup>
+        <AssemblyName>Messerli.Email.Test</AssemblyName>
+        <RootNamespace>Messerli.Email.Test</RootNamespace>
+    </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <LangVersion>8.0</LangVersion>
+        <Nullable>enable</Nullable>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Messerli.Test.Utility" />
+        <PackageReference Include="Messerli.IO" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="xunit" />
+        <PackageReference Include="xunit.runner.visualstudio" />
+    </ItemGroup>
+    <ItemGroup>
+       <ProjectReference Include="..\Email\Email.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="ExpectedEmail\**\*" CopyToOutputDirectory="Always" />
+        <Content Include="Resources\**\*" CopyToOutputDirectory="Always" />
+    </ItemGroup>
+</Project>
