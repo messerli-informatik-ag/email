@@ -24,7 +24,7 @@ namespace Messerli.Email.Test
 
         private static readonly PickupDirectory PickupDirectory = new PickupDirectory("dummy");
 
-        private static readonly DateTimeOffset DummyDateTime = new DateTimeOffset(new DateTime(2020, 2, 20));
+        private static readonly DateTimeOffset DummyDateTime = new DateTimeOffset(new DateTime(2020, 2, 20), TimeSpan.FromHours(1));
 
         private static readonly MailboxAddress FromAddress = new MailboxAddress("from@localhost", "From");
 
