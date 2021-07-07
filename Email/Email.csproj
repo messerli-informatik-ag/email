@@ -11,6 +11,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <PropertyGroup>
+        <DefineConstants>$(DefineConstants);CONTRACTS_FULL</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup>
         <RepositoryUrl>https://github.com/messerli-informatik-ag/email</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>email mail abstraction</PackageTags>
