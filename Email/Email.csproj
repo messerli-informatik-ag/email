@@ -6,7 +6,7 @@
     </PropertyGroup>
     <PropertyGroup>
         <Version>0.2.0</Version>
-        <TargetFrameworks>netstandard2.0; netstandard2.1</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0; netstandard2.1; net5.0</TargetFrameworks>
         <LangVersion>8.0</LangVersion>
         <Nullable>enable</Nullable>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -24,7 +24,7 @@
         <PackageReference Include="Equals.Fody" PrivateAssets="All" />
         <PackageReference Include="ConfigureAwait.Fody" PrivateAssets="All" />
         <PackageReference Include="Funcky" />
-        <PackageReference Include="System.Collections.Immutable" />
+        <PackageReference Include="System.Collections.Immutable" Condition="'$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'netstandard2.1'" />
         <PackageReference Include="MailKit" />
         <PackageReference Include="Messerli.FileSystem" />
     </ItemGroup>
