@@ -15,6 +15,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore /p:TreatWarningsAsErrors=true
     - name: Run Tests
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-build --verbosity normal

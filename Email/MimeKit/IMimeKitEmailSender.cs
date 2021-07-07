@@ -5,6 +5,6 @@ namespace Messerli.Email.MimeKit
 {
     internal interface IMimeKitEmailSender
     {
-        public Task SendMail(MimeMessage message);
+        Task SendMail(MimeMessage message);
     }
 }

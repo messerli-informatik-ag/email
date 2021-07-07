@@ -7,7 +7,7 @@
 		<PackageReference Update="Messerli.FileSystem" Version="[0.1.6, 0.2)" />
 	</ItemGroup>
 	<ItemGroup Label="Build dependencies">
-		<PackageReference Update="Messerli.CodeStyle" Version="[1.2.0, 2)" />
+		<PackageReference Update="Messerli.CodeStyle" Version="2.1.0" />
 		<PackageReference Update="Equals.Fody" Version="[4.0.1, 5)" />
 		<PackageReference Update="ConfigureAwait.Fody" Version="[3.3.1, 5)" />
 		<PackageReference Update="Fody" Version="[6.2.0, 7)" />
