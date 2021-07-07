@@ -28,4 +28,7 @@
         <PackageReference Include="MailKit" />
         <PackageReference Include="Messerli.FileSystem" />
     </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="Messerli.Email.Test" />
+    </ItemGroup>
 </Project>
