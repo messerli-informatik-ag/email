@@ -132,7 +132,7 @@ namespace Messerli.Email.MimeKit
             => addresses.Select(MapToMimeKitMailboxAddress);
 
         private static MimeKitMailboxAddress MapToMimeKitMailboxAddress(MailboxAddress address)
-            => new MimeKitMailboxAddress(ToNullable(address.Name), address.Address);
+            => new(ToNullable(address.Name), address.Address);
 
         private static MimeKitContentType MapToMimeKitContentType(ContentType contentType)
             => MimeKitContentType.TryParse(contentType.ToString(), out var mimeKitContentType)

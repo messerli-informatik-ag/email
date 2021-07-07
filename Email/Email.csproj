@@ -5,11 +5,13 @@
         <AssemblyName>Messerli.Email</AssemblyName>
     </PropertyGroup>
     <PropertyGroup>
-        <Version>0.2.0</Version>
-        <TargetFrameworks>netstandard2.0; netstandard2.1</TargetFrameworks>
-        <LangVersion>8.0</LangVersion>
+        <Version>0.2.1</Version>
+        <TargetFrameworks>netstandard2.0; net5.0</TargetFrameworks>
+        <LangVersion>9.0</LangVersion>
         <Nullable>enable</Nullable>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+    <PropertyGroup>
+        <DefineConstants>$(DefineConstants);CONTRACTS_FULL</DefineConstants>
     </PropertyGroup>
     <PropertyGroup>
         <RepositoryUrl>https://github.com/messerli-informatik-ag/email</RepositoryUrl>
@@ -24,8 +26,11 @@
         <PackageReference Include="Equals.Fody" PrivateAssets="All" />
         <PackageReference Include="ConfigureAwait.Fody" PrivateAssets="All" />
         <PackageReference Include="Funcky" />
-        <PackageReference Include="System.Collections.Immutable" />
+        <PackageReference Include="System.Collections.Immutable" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
         <PackageReference Include="MailKit" />
         <PackageReference Include="Messerli.FileSystem" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="Messerli.Email.Test" />
     </ItemGroup>
 </Project>

@@ -115,7 +115,7 @@ namespace Messerli.Email
             IImmutableList<MailboxAddress>? blindCarbonCopyRecipients = null,
             IImmutableList<BodyPart>? bodyParts = null,
             AutoGenerationType? autoGenerationType = null)
-            => new EmailMessageBuilder(
+            => new(
                 subject ?? _subject,
                 from ?? _sender,
                 recipients ?? _recipients,

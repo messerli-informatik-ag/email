@@ -9,7 +9,7 @@ namespace Messerli.Email.Test
     public sealed class MailKitSmtpIntegrationTest
     {
         private static readonly SmtpServerConfig DefaultMailCatcherConfig =
-            new SmtpServerConfig(
+            new(
                 host: "localhost",
                 port: 1025,
                 useSsl: false);
