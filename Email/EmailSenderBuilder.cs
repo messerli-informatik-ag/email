@@ -69,7 +69,7 @@ namespace Messerli.Email
             IMultipartBoundaryGenerator? multipartBoundaryGenerator = null,
             IFileSystem? fileSystem = null,
             IFileOpeningBuilder? fileOpeningBuilder = null)
-            => new EmailSenderBuilder(
+            => new(
                 messageIdGenerator ?? _messageIdGenerator,
                 dateTimeAccessor ?? _dateTimeAccessor,
                 multipartBoundaryGenerator ?? _multipartBoundaryGenerator,
