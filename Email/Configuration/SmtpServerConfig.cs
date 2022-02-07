@@ -1,11 +1,8 @@
 using Funcky.Monads;
 
-#pragma warning disable CS0660, CS0661
-
 namespace Messerli.Email.Configuration
 {
-    [Equals]
-    public sealed class SmtpServerConfig
+    public sealed record SmtpServerConfig
     {
         public SmtpServerConfig(string host, int port, bool useSsl, Option<SmtpCredentials> credentials = default)
         {
@@ -27,9 +24,5 @@ namespace Messerli.Email.Configuration
         public bool UseSsl { get; }
 
         public Option<SmtpCredentials> Credentials { get; }
-
-        public static bool operator ==(SmtpServerConfig left, SmtpServerConfig right) => Operator.Weave(left, right);
-
-        public static bool operator !=(SmtpServerConfig left, SmtpServerConfig right) => Operator.Weave(left, right);
     }
 }
