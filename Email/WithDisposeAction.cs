@@ -1,5 +1,5 @@
 using System;
-using Funcky;
+using static Funcky.Functional;
 
 namespace Messerli.Email
 {
@@ -16,7 +16,7 @@ namespace Messerli.Email
         }
 
         public WithDisposeAction(TValue value)
-            : this(value, Functional.NoOperation)
+            : this(value, NoOperation)
         {
         }
 

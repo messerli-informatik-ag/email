@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ItemGroup Label="Runtime dependencies">
-		<PackageReference Update="Funcky" Version="[2.2.0, 3)" />
+		<PackageReference Update="Funcky" Version="[2.6.0, 3)" />
 		<PackageReference Update="System.Collections.Immutable" Version="1.7.1" />
 		<PackageReference Update="MailKit" Version="[2.5.2, 3)" />
 		<PackageReference Update="Messerli.FileSystem" Version="[0.1.6, 0.2)" />
