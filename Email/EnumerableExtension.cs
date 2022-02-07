@@ -31,7 +31,7 @@ namespace Messerli.Email
             }
             catch (Exception exception)
             {
-                return Option.Some(exception);
+                return exception;
             }
 
             return Option<Exception>.None();

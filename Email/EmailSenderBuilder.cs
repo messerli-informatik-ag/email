@@ -51,9 +51,9 @@ namespace Messerli.Email
         [Pure]
         public IEmailSender Build(EmailDelivery delivery)
             => delivery.Match(
-                @null: _ => new NullEmailSender(),
-                pickup: CreatePickupDeliverySender,
-                smtp: CreateSmtpDeliverySender);
+                nullDelivery: _ => new NullEmailSender(),
+                pickupDelivery: CreatePickupDeliverySender,
+                smtpDelivery: CreateSmtpDeliverySender);
 
         [Pure]
         internal EmailSenderBuilder FileSystem(IFileSystem fileSystem)

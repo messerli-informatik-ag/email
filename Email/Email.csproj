@@ -5,13 +5,16 @@
         <AssemblyName>Messerli.Email</AssemblyName>
     </PropertyGroup>
     <PropertyGroup>
-        <Version>0.2.1</Version>
+        <Version>0.2.2</Version>
         <TargetFrameworks>netstandard2.0; net5.0</TargetFrameworks>
         <LangVersion>9.0</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <PropertyGroup>
         <DefineConstants>$(DefineConstants);CONTRACTS_FULL</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(TargetFramework) == 'net5.0'">
+        <DefineConstants>$(DefineConstants);ASYNC_DISPOSABLE_STREAM</DefineConstants>
     </PropertyGroup>
     <PropertyGroup>
         <RepositoryUrl>https://github.com/messerli-informatik-ag/email</RepositoryUrl>
@@ -21,12 +24,13 @@
         <Copyright>© Messerli Informatik AG. All rights reserved.</Copyright>
         <Description>A simple abstraction for sending emails.</Description>
     </PropertyGroup>
+    <PropertyGroup>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Fody" PrivateAssets="All" />
-        <PackageReference Include="Equals.Fody" PrivateAssets="All" />
-        <PackageReference Include="ConfigureAwait.Fody" PrivateAssets="All" />
         <PackageReference Include="Funcky" />
-        <PackageReference Include="System.Collections.Immutable" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
+        <PackageReference Include="Funcky.DiscriminatedUnion" PrivateAssets="all" />
         <PackageReference Include="MailKit" />
         <PackageReference Include="Messerli.FileSystem" />
     </ItemGroup>

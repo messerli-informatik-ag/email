@@ -31,12 +31,13 @@ namespace Messerli.Email.MimeKit
         public async Task SendMail(MimeMessage message)
         {
             EnsurePickupDirectoryExists();
-            #if NETSTANDARD2_1
-            await using var stream = OpenPickupFile(message);
+            #if ASYNC_DISPOSABLE_STREAM
+            var stream = OpenPickupFile(message);
+            await using var disposable = stream;
             #else
             using var stream = OpenPickupFile(message);
             #endif
-            await message.WriteToAsync(stream);
+            await message.WriteToAsync(stream).ConfigureAwait(false);
         }
 
         private Stream OpenPickupFile(MimeMessage message)

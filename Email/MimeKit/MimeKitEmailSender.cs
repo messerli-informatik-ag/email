@@ -17,7 +17,7 @@ namespace Messerli.Email.MimeKit
         public async Task SendMessage(EmailMessage message)
         {
             using var mimeMessage = _mimeKitMessageMapper.MapToMimeKitMessage(message);
-            await _mimeKitEmailSender.SendMail(mimeMessage.Value);
+            await _mimeKitEmailSender.SendMail(mimeMessage.Value).ConfigureAwait(false);
         }
     }
 }

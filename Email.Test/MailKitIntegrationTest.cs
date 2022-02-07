@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Net.Mime;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Messerli.Email.Configuration;
 using Messerli.Email.Time;
@@ -63,7 +64,7 @@ namespace Messerli.Email.Test
             _testOutputHelper.WriteLine(result);
 
             var expected = ReadExpectedEmail(expectedMailName);
-            Assert.Equal(expected, result);
+            Assert.Equal(Regex.Replace(expected, pattern: "\r\n|\n", replacement: Environment.NewLine), result);
         }
 
         public static TheoryData<string, EmailMessage> GetEmailMessagesData()
