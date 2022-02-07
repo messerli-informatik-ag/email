@@ -64,7 +64,7 @@ namespace Messerli.Email.Test
             _testOutputHelper.WriteLine(result);
 
             var expected = ReadExpectedEmail(expectedMailName);
-            Assert.Equal(Regex.Replace(expected, pattern: "\r\n|\n", replacement: "\r\n"), result);
+            Assert.Equal(Regex.Replace(expected, pattern: "\r\n|\n", replacement: Environment.NewLine), result);
         }
 
         public static TheoryData<string, EmailMessage> GetEmailMessagesData()
