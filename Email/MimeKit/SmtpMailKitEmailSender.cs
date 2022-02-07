@@ -19,23 +19,23 @@ namespace Messerli.Email.MimeKit
         public async Task SendMail(MimeMessage message)
         {
             using var client = new SmtpClient();
-            await OpenSmtpConnection(client);
-            await client.SendAsync(message);
-            await Disconnect(client);
+            await OpenSmtpConnection(client).ConfigureAwait(false);
+            await client.SendAsync(message).ConfigureAwait(false);
+            await Disconnect(client).ConfigureAwait(false);
         }
 
         private static async Task Disconnect(IMailService client)
         {
             const bool sendQuitCommandToServer = true;
-            await client.DisconnectAsync(sendQuitCommandToServer);
+            await client.DisconnectAsync(sendQuitCommandToServer).ConfigureAwait(false);
         }
 
         private async Task OpenSmtpConnection(IMailService client)
         {
-            await client.ConnectAsync(_smtpServerConfig.Host, _smtpServerConfig.Port, _smtpServerConfig.UseSsl);
+            await client.ConnectAsync(_smtpServerConfig.Host, _smtpServerConfig.Port, _smtpServerConfig.UseSsl).ConfigureAwait(false);
 
             await _smtpServerConfig.Credentials.AndThen(async credentials =>
-                await client.AuthenticateAsync(credentials.Username, credentials.Password));
+                await client.AuthenticateAsync(credentials.Username, credentials.Password).ConfigureAwait(false));
         }
     }
 }
