@@ -8,6 +8,7 @@
 	</ItemGroup>
 	<ItemGroup Label="Build dependencies">
 		<PackageReference Update="Messerli.CodeStyle" Version="2.1.0" />
+		<PackageReference Update="Funcky.DiscriminatedUnion" Version="0.1.0" />
 	</ItemGroup>
 	<ItemGroup Label="Test dependencies">
 		<PackageReference Update="Microsoft.NET.Test.Sdk" Version="[16.1.1, 17)" />
