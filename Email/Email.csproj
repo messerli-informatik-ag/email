@@ -24,6 +24,10 @@
         <Copyright>© Messerli Informatik AG. All rights reserved.</Copyright>
         <Description>A simple abstraction for sending emails.</Description>
     </PropertyGroup>
+    <PropertyGroup>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Funcky" />
         <PackageReference Include="Funcky.DiscriminatedUnion" PrivateAssets="all" />
