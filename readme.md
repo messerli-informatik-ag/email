@@ -1,3 +1,6 @@
+> **Note** \
+> This project is no longer actively maintained.
+
 # Email
 
 ![Build](https://github.com/messerli-informatik-ag/email/workflows/Build/badge.svg)
