@@ -4,11 +4,6 @@
         <AssemblyName>Messerli.Email.Test</AssemblyName>
         <RootNamespace>Messerli.Email.Test</RootNamespace>
     </PropertyGroup>
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <LangVersion>9.0</LangVersion>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Messerli.Test.Utility" />
         <PackageReference Include="Messerli.IO" />
