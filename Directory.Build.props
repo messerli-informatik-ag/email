@@ -3,4 +3,14 @@
 	<ItemGroup>
 		<PackageReference Include="Messerli.CodeStyle" PrivateAssets="all" />
 	</ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<LangVersion>11.0</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<PropertyGroup>
+		<Authors>Messerli Informatik AG</Authors>
+		<Copyright>© Messerli Informatik AG. All rights reserved.</Copyright>
+		<PackageLicenseExpression>MIT OR Apache-2.0</PackageLicenseExpression>
+	</PropertyGroup>
 </Project>
